@@ -1,0 +1,42 @@
+@startuml
+skinparam class {
+    BackgroundColor #f0f0f0
+    BorderColor #333333
+    BorderThickness 1
+}
+entity "User" as Users {
+    +userId: number <<generated>>
+    --
+    +username: String
+    +email: String
+    +password: String
+    +phone_number: String
+    +profile_image_url: String
+    +created_at: DateTime
+    +updated_at: DateTime
+}
+entity "Marker" as Markers {
+    +locationId: number <<generated>>
+    +userId: number <<FK>>
+    --
+    +name: String
+    +description: String
+    +latitude: Float
+    +longitude: Float
+    +created_at: DateTime
+    +updated_at: DateTime
+}
+entity "MediaFile" as MediaFiles {
+    +mediaId: <<generated>>
+    +locationId: number <<FK>>
+    +userId: number <<FK>>
+    --
+    +mediaType: String
+    +mediaUrl: String
+    +created_at: DateTime
+    +updated_at: DateTime
+}
+Users ||-d-o{ Markers : "has"
+Users ||-r-o{ MediaFiles : "uploads"
+Markers ||-r-o{ MediaFiles : "contains"
+@enduml

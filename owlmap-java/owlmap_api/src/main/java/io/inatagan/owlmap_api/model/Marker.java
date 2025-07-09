@@ -4,32 +4,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Represents a USER entity in the application.
- */
-
 @Entity
+@Table(name = "MARKERS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Users {
+public class Marker {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    private Long userId;
+
     private String name;
-    
-    @NotBlank
-    private String email;
-    
-    @NotBlank
-    private String password;
+
+    private String longitude;
+
+    private String latitude;
 }

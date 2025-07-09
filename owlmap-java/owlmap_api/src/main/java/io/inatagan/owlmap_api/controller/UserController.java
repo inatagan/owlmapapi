@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.inatagan.owlmap_api.model.Users;
+import io.inatagan.owlmap_api.model.User;
 import io.inatagan.owlmap_api.repository.UserRepository;
 import jakarta.validation.Valid;
 
@@ -27,17 +27,17 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/users")
-    List<Users> getAllUsers() {
+    List<User> getAllUsers() {
         return userRepository.findAll();
     }
     
     @GetMapping("/users/{id}")
-    public Optional<Users> getUserById(@PathVariable Long id) {
+    public Optional<User> getUserById(@PathVariable Long id) {
         return userRepository.findById(id);
     }
     
     @PostMapping("/users")
-    public Users postNewUser(@Valid @RequestBody Users entity) {
+    public User postNewUser(@Valid @RequestBody User entity) {
         return userRepository.save(entity);
     }
     
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public Users putUser(@PathVariable Long id, @RequestBody Users entity) {
+    public User putUser(@PathVariable Long id, @RequestBody User entity) {
         return userRepository.findById(id).map(user -> {
             user.setName(entity.getName());
             return userRepository.save(user);

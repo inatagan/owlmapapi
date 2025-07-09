@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.inatagan.simple_log_j.SimpleLogJ;
 
-import io.inatagan.owlmap_api.model.Markers;
+import io.inatagan.owlmap_api.model.Marker;
 import io.inatagan.owlmap_api.repository.MarkersRepository;
 import jakarta.validation.Valid;
 
@@ -29,7 +29,7 @@ public class MarkersController {
     MarkersRepository markersRepository;
 
     @GetMapping("/markers")
-    List<Markers> getAllMarkers() {
+    List<Marker> getAllMarkers() {
         try {
             return markersRepository.findAll();
         } catch (Exception e) {
@@ -39,12 +39,12 @@ public class MarkersController {
     }
     
     @GetMapping("/markers/{id}")
-    public Optional<Markers> getMarkerById(@PathVariable Long id) {
+    public Optional<Marker> getMarkerById(@PathVariable Long id) {
         return markersRepository.findById(id);
     }
     
     @PostMapping("/markers")
-    public Markers postNewMarker(@Valid @RequestBody Markers entity) {
+    public Marker postNewMarker(@Valid @RequestBody Marker entity) {
         return markersRepository.save(entity);
     }
     
@@ -54,7 +54,7 @@ public class MarkersController {
     }
 
     @PutMapping("/markers/{id}")
-    public Markers putMarker(@PathVariable Long id, @RequestBody Markers entity) {
+    public Marker putMarker(@PathVariable Long id, @RequestBody Marker entity) {
         return markersRepository.findById(id).map(markers -> {
             markers.setName(entity.getName());
             return markersRepository.save(markers);
