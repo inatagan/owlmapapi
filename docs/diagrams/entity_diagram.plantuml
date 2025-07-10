@@ -36,7 +36,7 @@ entity "MediaFile" as MediaFiles {
     +created_at: DateTime
     +updated_at: DateTime
 }
-Users ||-d-o{ Markers : "has"
+Users ||-u-o{ Markers : "has"
 Users ||-r-o{ MediaFiles : "uploads"
 Markers ||-r-o{ MediaFiles : "contains"
 @enduml

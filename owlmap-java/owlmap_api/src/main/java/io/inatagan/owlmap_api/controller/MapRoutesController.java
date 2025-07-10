@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.inatagan.owlmap_api.model.MapRoutes;
+import io.inatagan.owlmap_api.entity.MapRoutes;
 import io.inatagan.owlmap_api.repository.MapRoutesRepository;
 import jakarta.validation.Valid;
 

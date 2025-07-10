@@ -1,4 +1,4 @@
-package io.inatagan.owlmap_api.model;
+package io.inatagan.owlmap_api.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

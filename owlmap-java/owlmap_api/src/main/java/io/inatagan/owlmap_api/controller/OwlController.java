@@ -1,8 +1,9 @@
 package io.inatagan.owlmap_api.controller;
 
-import io.inatagan.owlmap_api.model.Owl;
 import io.inatagan.owlmap_api.repository.OwlRepository;
 import io.inatagan.owlmap_api.controller.OwlController; // Changed import
+import io.inatagan.owlmap_api.entity.Owl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
