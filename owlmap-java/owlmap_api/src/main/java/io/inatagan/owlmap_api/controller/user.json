@@ -1,0 +1,52 @@
+{"users":[
+    {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Jonee Doe",
+        "email": "jonee.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "James Doe",
+        "email": "james.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Pater Doe",
+        "email": "pater.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Mail Doe",
+        "email": "mail.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Bob Doe",
+        "email": "bob.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Maria Doe",
+        "email": "maria.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Mary Doe",
+        "email": "mary.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Babel Doe",
+        "email": "babel.doe@example.com",
+        "password": "securePassword123"
+    },
+    {
+        "name": "Java Doe",
+        "email": "java.doe@example.com",
+        "password": "securePassword123"
+    }
+]}

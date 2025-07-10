@@ -50,13 +50,22 @@ public class MarkersController {
         }
         return ResponseEntity.badRequest().build(); // Status 400
     }
+
+    @PostMapping("/markers/{id}")
+    public ResponseEntity<Marker> saveMarkerById(@PathVariable Long id, @RequestBody MarkerRecordDto markerRecordDto) {
+        Marker savedMarkerbyId = markerService.saveById(markerRecordDto, id);
+        if (savedMarkerbyId != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(savedMarkerbyId); // Status 200
+        }
+        return ResponseEntity.badRequest().build(); // Status 400
+    }
+    
     
     
     @PutMapping("/markers/{id}")
     public ResponseEntity<Marker> updateMarker(
         @PathVariable Long id,
-        @RequestParam String email,
-        @RequestParam String password) {
+            @RequestBody MarkerRecordDto markerRecordDto) {
             Marker marker = markerService.findById(id);
             if (marker != null) {
                 markerService.updateById(marker);

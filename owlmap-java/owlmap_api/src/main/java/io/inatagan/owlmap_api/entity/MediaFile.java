@@ -1,5 +1,5 @@
 package io.inatagan.owlmap_api.entity;
-
+import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Table(name = "MEDIAFILES")
 @Getter
@@ -21,17 +22,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MediaFile {
+public class MediaFile implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // private Long userId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_userId")
     private User user;
     
-    // private Long markerId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_markerId")
     private Marker marker;

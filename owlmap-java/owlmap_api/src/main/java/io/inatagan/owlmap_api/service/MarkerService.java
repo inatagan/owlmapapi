@@ -1,21 +1,25 @@
 package io.inatagan.owlmap_api.service;
-
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import io.inatagan.owlmap_api.dto.MarkerRecordDto;
 import io.inatagan.owlmap_api.entity.Marker;
 import io.inatagan.owlmap_api.repository.MarkersRepository;
+import io.inatagan.owlmap_api.repository.UserRepository;
 import jakarta.transaction.Transactional;
+
 
 @Service
 public class MarkerService {
-    @Autowired
-    private UserService userService;
+    
     @Autowired
     private MarkersRepository markersRepository;
+    @Autowired
+    private UserRepository userRepository;
+
     public List<Marker> findAll() {
         return markersRepository.findAll();
     }
@@ -29,7 +33,25 @@ public class MarkerService {
     public Marker save(MarkerRecordDto markerRecordDto) {
         Marker marker = new Marker();
         try {
-            marker.setUser(userService.findById(markerRecordDto.userId()));
+            marker.setUsers(userRepository.findAllById(markerRecordDto.userId()).stream().collect(Collectors.toSet()));
+            marker.setName(markerRecordDto.name());
+            marker.setLongitude(markerRecordDto.longitude());
+            marker.setLatitude(markerRecordDto.latitude());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid user ID: " + markerRecordDto.userId(), e);
+        }
+        return markersRepository.save(marker);
+    }
+    @Transactional
+    public Marker saveById(MarkerRecordDto markerRecordDto, Long marKerId) {
+        Marker marker = markersRepository.findById(null == marKerId ? 0L : marKerId)
+                .orElseThrow(() -> new IllegalArgumentException("Marker not found"));
+        try {
+            Set<Long> userIds = marker.getUsers().stream().map(user -> user.getId()).collect(Collectors.toSet());
+            // Combine existing user IDs and new user IDs into a single set
+            Set<Long> combinedUserIds = new java.util.HashSet<>(userIds);
+            combinedUserIds.addAll(markerRecordDto.userId());
+            marker.setUsers(userRepository.findAllById(combinedUserIds).stream().collect(Collectors.toSet()));
             marker.setName(markerRecordDto.name());
             marker.setLongitude(markerRecordDto.longitude());
             marker.setLatitude(markerRecordDto.latitude());
