@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import io.inatagan.owlmap_api.entity.User;
 import io.inatagan.owlmap_api.repository.UserRepository;
 
+
 @Service
 public class UserService {
     @Autowired

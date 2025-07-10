@@ -36,7 +36,31 @@ entity "MediaFile" as MediaFiles {
     +created_at: DateTime
     +updated_at: DateTime
 }
-Users ||-u-o{ Markers : "has"
+entity "MapRoute" as MapRoutes {
+    +routeId: <<generated>>
+    +locationId: number <<FK>>
+    +userId: number <<FK>>
+    --
+    +name: String
+    +startMarker: String
+    +endMarker: String
+    +created_at: DateTime
+    +updated_at: DateTime
+}
+entity "Owl" as Owls {
+    +owlId: <<generated>>
+    +locationId: number <<FK>>
+    --
+    +name: String
+    +description: String
+    +species: enum
+    +created_at: DateTime
+    +updated_at: DateTime
+}
+Users }o-u-o{ Markers : "many has many"
 Users ||-r-o{ MediaFiles : "uploads"
 Markers ||-r-o{ MediaFiles : "contains"
+Markers ||-r-o{ Owls : "has"
+Users ||-l-o{ MapRoutes : "creates"
+MapRoutes ||-u-o{ Markers : "includes"
 @enduml
