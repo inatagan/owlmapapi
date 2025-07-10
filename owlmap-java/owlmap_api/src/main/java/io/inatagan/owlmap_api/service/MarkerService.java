@@ -5,11 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.inatagan.owlmap_api.dto.MarkerRecordDto;
 import io.inatagan.owlmap_api.entity.Marker;
 import io.inatagan.owlmap_api.repository.MarkersRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class MarkerService {
+    @Autowired
+    private UserService userService;
     @Autowired
     private MarkersRepository markersRepository;
     public List<Marker> findAll() {
@@ -21,7 +25,17 @@ public class MarkerService {
                 .orElseThrow(() -> new IllegalArgumentException("Marker not found"));
     }
 
-    public Marker save(Marker marker) {
+    @Transactional
+    public Marker save(MarkerRecordDto markerRecordDto) {
+        Marker marker = new Marker();
+        try {
+            marker.setUser(userService.findById(markerRecordDto.userId()));
+            marker.setName(markerRecordDto.name());
+            marker.setLongitude(markerRecordDto.longitude());
+            marker.setLatitude(markerRecordDto.latitude());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid user ID: " + markerRecordDto.userId(), e);
+        }
         return markersRepository.save(marker);
     }
 

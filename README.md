@@ -9,3 +9,36 @@
 # OwlMap API
 REST API backend for the OwlMap project.
 
+### Install and run this api
+
+* clone this repository:
+
+```bash
+git clone https://github.com/inatagan/owlmapapi.git
+```
+
+* from the root dir navigate to the API dir with:
+
+```bash
+cd owlmap-java/
+```
+
+* run the API:
+
+```bash
+mvn spring-boot:run
+```
+
+### Endpoints provided
+
+```
+/owlmap
+```
+
+```
+/owlmap/users
+```
+
+```
+/owlmap/markers
+```

@@ -52,3 +52,12 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private final Set<MediaFile> mediaFile = new HashSet<>();
 }
+/*
+Example JSON for inserting a User (excluding id, marker, and mediaFile, which are managed by the system):
+
+{
+	"name": "John Doe",
+	"email": "john.doe@example.com",
+	"password": "securePassword123"
+}
+*/

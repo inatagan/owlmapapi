@@ -47,3 +47,20 @@ public class Marker {
 	@OneToMany(mappedBy = "marker", fetch = FetchType.LAZY)
 	private final Set<MediaFile> mediaFiles = new HashSet<>();
 }
+/*
+Example JSON for inserting a Marker entity:
+
+{
+	"user": {
+		"id": 1
+	},
+	"name": "Sample Marker",
+	"longitude": "34.0522",
+	"latitude": "-118.2437"
+}
+
+Note: 
+- The "mediaFiles" field is write-only and should not be included in the insert JSON.
+- The "user" object should reference an existing user by id.
+- "id" is auto-generated and should not be provided.
+*/

@@ -12,7 +12,6 @@ public class IndexController implements ErrorController {
     @RequestMapping(PATH)
     @ResponseBody
     public String getErrorPath() {
-        // TODO Auto-generated method stub
         return "No Mapping Found";
     }
 
