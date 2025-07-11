@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/owls")
+@RequestMapping("/owlmap")
 public class OwlController {
 
     @Autowired

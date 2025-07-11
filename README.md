@@ -38,6 +38,11 @@ mvn spring-boot:run
 
 ### Endpoints provided
 
+You can see full documentation and endpoints on the swagger page like this example:
+```
+http://localhost:8081/swagger-ui/index.html
+```
+
 ```
 /owlmap
 ```

@@ -27,7 +27,7 @@ public class MarkersController {
     private MarkerService markerService;
 
     
-    @GetMapping("markers")
+    @GetMapping("/markers")
     public ResponseEntity<List<Marker>> getAllMarkers() {
         List<Marker> markers = markerService.findAll();
         return ResponseEntity.ok().body(markers);
